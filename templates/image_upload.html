@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Image Analysis | Accident Detection System{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container narrow-container">
+        <div class="page-head center">
+            <span class="section-tag">Image Analysis</span>
+            <h2>Upload a Traffic Image</h2>
+            <p>Select a road scene image to analyze whether an accident is present.</p>
+        </div>
+
+        <div class="form-card">
+            <form action="{{ url_for('image_upload') }}" method="POST" enctype="multipart/form-data">
+                <div class="upload-box">
+                    <label for="image" class="upload-label">Choose Image</label>
+                    <input type="file" name="image" id="image" accept=".png,.jpg,.jpeg" required>
+                    <small>Supported formats: PNG, JPG, JPEG</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width">Analyze Image</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

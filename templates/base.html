@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{% block title %}Accident Detection System{% endblock %}</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% block extra_head %}{% endblock %}
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="topbar">
+
+<div class="container nav-wrap">
+
+<div class="brand">
+
+<div class="brand-badge">AD</div>
+
+<div>
+<h1>Accident Detection System</h1>
+<p>AI Powered Road Incident Monitoring</p>
+</div>
+
+</div>
+
+<nav class="nav-links">
+
+<a href="{{ url_for('index') }}">Home</a>
+
+<a href="{{ url_for('video_detection') }}">Video Detection</a>
+
+<a href="{{ url_for('image_upload') }}">Image Detection</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+<div class="container">
+
+<!-- Flash Messages -->
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+<div class="flash-wrap">
+
+{% for message in messages %}
+
+<div class="flash-message">
+{{ message }}
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endwith %}
+
+<!-- Page Content -->
+
+{% block content %}{% endblock %}
+
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+<div class="container footer-inner">
+
+<p>
+Accident Detection System using Flask, OpenCV, YOLO and Deep Learning
+</p>
+
+<p class="footer-small">
+AI Traffic Monitoring Project
+</p>
+
+</div>
+
+</footer>
+
+</body>
+
+</html>

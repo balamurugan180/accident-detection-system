@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Detection Results | Accident Detection System{% endblock %}
+
+{% block content %}
+<section class="page-section">
+    <div class="container">
+        <div class="page-head center">
+            <span class="section-tag">Advanced Analysis Output</span>
+            <h2>Accident Detection Result Dashboard</h2>
+            <p>Comprehensive result view including accident prediction, object counts, severity level, and summary report.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="metric-card">
+                <h4>Prediction Status</h4>
+                <p class="metric-value">{{ result_label }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>Confidence Score</h4>
+                <p class="metric-value">
+                    {% if result_probability and result_probability > 0 %}
+                        {{ result_probability }}%
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="metric-card">
+                <h4>Vehicles Detected</h4>
+                <p class="metric-value">{{ vehicle_count }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>Pedestrians Detected</h4>
+                <p class="metric-value">{{ pedestrian_count }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h4>Severity Level</h4>
+                <p class="metric-value">{{ severity }}</p>
+            </div>
+        </div>
+
+        <div class="result-grid advanced-gap">
+            <div class="result-card">
+                <h3>Uploaded Image</h3>
+                <img src="{{ url_for('static', filename=uploaded_image) }}" alt="Uploaded Image">
+            </div>
+
+            <div class="result-card">
+                <h3>Processed Output</h3>
+                <img src="{{ url_for('static', filename=result_image) }}" alt="Processed Result">
+            </div>
+        </div>
+
+        <div class="report-panel">
+            <h3>Accident Summary Report</h3>
+            <p>{{ summary_report }}</p>
+        </div>
+
+        <div class="recommend-panel">
+            <h3>System Recommendations</h3>
+            <ul>
+                {% for rec in recommendations %}
+                    <li>{{ rec }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="center-actions">
+            <a href="{{ url_for('image_upload') }}" class="btn btn-secondary">Analyze Another Image</a>
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Accident Detection System{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-left">
+            <span class="section-tag">Intelligent Monitoring Platform</span>
+            <h2>Monitor road incidents with a smarter and cleaner web interface</h2>
+            <p>
+                This system uses deep learning and computer vision to analyze road scenes,
+                identify possible accidents, and present the output through an organized,
+                user-friendly dashboard.
+            </p>
+
+            <div class="hero-actions">
+                <a href="{{ url_for('video_detection') }}" class="btn btn-primary">Open Live Video Detection</a>
+                <a href="{{ url_for('image_upload') }}" class="btn btn-secondary">Analyze an Image</a>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Real-Time</h3>
+                    <p>Continuous video stream monitoring using a demo CCTV feed</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Image Based</h3>
+                    <p>Upload road scene images and detect accident probability</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Deep Learning</h3>
+                    <p>Prediction powered by a trained accident detection model</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="info-panel">
+                <h3>System Modules</h3>
+                <ul>
+                    <li>Accident detection from traffic images</li>
+                    <li>Live demo video monitoring</li>
+                    <li>Prediction label with confidence score</li>
+                    <li>Processed image result visualization</li>
+                    <li>Responsive Flask web application</li>
+                </ul>
+            </div>
+
+            <div class="info-panel soft">
+                <h3>Recommended Usage</h3>
+                <p>
+                    Use the live video page to demonstrate continuous monitoring and use the image
+                    analysis page for quick testing with sample accident and non-accident images.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">Features</span>
+            <h2>Core capabilities of the project</h2>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Live Stream Analysis</h3>
+                <p>Displays processed traffic footage in a streaming format with predicted accident status.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Image Upload Detection</h3>
+                <p>Allows users to upload traffic scene images and obtain annotated results instantly.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Clear Result Display</h3>
+                <p>Shows the processed output image along with prediction label and confidence percentage.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

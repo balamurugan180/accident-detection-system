@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Video Accident Detection</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#f4f4f4;
+text-align:center;
+}
+
+.container{
+width:900px;
+margin:auto;
+background:white;
+padding:30px;
+margin-top:40px;
+box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+}
+
+h1{
+color:#333;
+}
+
+.upload-box{
+margin:20px;
+padding:20px;
+border:2px dashed #ccc;
+}
+
+button{
+padding:10px 20px;
+background:#007bff;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+.video-box{
+margin-top:20px;
+}
+
+.report-box{
+margin-top:30px;
+padding:20px;
+background:#fafafa;
+border:1px solid #ddd;
+text-align:left;
+}
+
+.report-box h2{
+color:#c0392b;
+}
+
+ul{
+margin-left:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Video Accident Detection</h1>
+
+<!-- Upload Form -->
+
+<div class="upload-box">
+
+<form action="{{ url_for('upload_video') }}" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="video" required>
+
+<br><br>
+
+<button type="submit">Upload Video</button>
+
+</form>
+
+</div>
+
+<!-- Uploaded Video -->
+
+{% if uploaded_video %}
+
+<div class="video-box">
+
+<h3>Uploaded Video</h3>
+
+<video width="600" controls>
+
+<source src="{{ url_for('static', filename=uploaded_video) }}" type="video/mp4">
+
+</video>
+
+</div>
+
+{% endif %}
+
+<!-- Live Detection -->
+
+{% if uploaded_video %}
+
+<div class="video-box">
+
+<h3>Live Detection</h3>
+
+<img src="{{ url_for('video_feed') }}" width="600">
+
+</div>
+
+{% endif %}
+
+<!-- Accident Report -->
+
+{% if accident_detected %}
+
+<div class="report-box">
+
+<h2>Accident Analysis Report</h2>
+
+<p><b>Status:</b> Accident Detected</p>
+
+<p><b>Confidence:</b> {{ result_probability }}%</p>
+
+<p><b>Vehicles Detected:</b> {{ vehicle_count }}</p>
+
+<p><b>Pedestrians Detected:</b> {{ pedestrian_count }}</p>
+
+<p><b>Severity Level:</b> {{ severity }}</p>
+
+<h3>Summary</h3>
+
+<p>{{ summary_report }}</p>
+
+<h3>Recommended Actions</h3>
+
+<ul>
+
+{% for rec in recommendations %}
+
+<li>{{ rec }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+{% endif %}
+
+<!-- No Accident -->
+
+{% if no_accident %}
+
+<div class="report-box">
+
+<h2>No Accident Detected</h2>
+
+<p>The system analyzed the video and found no accident patterns.</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
