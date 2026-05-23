@@ -12,7 +12,7 @@ Step 2: Create Virtual Environment
 bash# Windows
 python -m venv venv
 
-# Activate it
+Activate it
 venv\Scripts\activate
 
 Step 3: Install Requirements
